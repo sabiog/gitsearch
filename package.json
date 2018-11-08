@@ -35,12 +35,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sabiog/ts-for-ng-18102018.git"
+    "url": "git+https://github.com/sabiog/gitsearch.git"
   },
   "bugs": {
-    "url": "https://github.com/sabiog/ts-for-ng-18102018/issues"
+    "url": "https://github.com/sabiog/gitsearch.git/issues"
   },
-  "homepage": "https://github.com/sabiog/ts-for-ng-18102018#readme",
+  "homepage": "https://github.com/sabiog/gitsearch.git#readme",
   "description": "",
   "pre-commit": []
 }
