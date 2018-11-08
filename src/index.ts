@@ -1,6 +1,7 @@
 import { from, fromEvent, Observable, ReplaySubject, } from 'rxjs';
 import { debounceTime, map, switchMap } from 'rxjs/operators';
 import { FromEventTarget } from 'rxjs/internal/observable/fromEvent';
+import { filter } from 'rxjs/internal/operators/filter';
 
 const search: FromEventTarget<KeyboardEvent> = document.getElementById('searchbox') as FromEventTarget<KeyboardEvent>;
 const elem: HTMLInputElement = document.getElementById('searchbox') as HTMLInputElement;
@@ -18,6 +19,7 @@ function request$(txt: string): Observable<any> {
 }
 
 keyPause$.pipe(
+    filter((_val: string) => elem.value.length > 0),
     switchMap((_val: string) => request$(elem.value),
 // tslint:disable-next-line:no-any
     (_: any, data: any) => data)).subscribe((result: any) => {
@@ -30,5 +32,4 @@ keyPause$.pipe(
             li.appendChild(document.createTextNode(item.html_url));
             results.appendChild(li);
         }
-
     });
