@@ -102,16 +102,16 @@ function request$(txt) {
     return rxjs_1.from(fetch("https://api.github.com/search/repositories?q=" + txt + "&sort=stars&order=desc")
         .then(function (res) { return res.json(); }));
 }
-keyPause$.pipe(filter_1.filter(function (_val) { return typeof (elem.value) !== undefined && elem.value.length > 0; }), operators_1.switchMap(function (_val) { return request$(elem.value); }, 
+keyPause$.pipe(filter_1.filter(function (_) { return typeof (elem.value) !== undefined && elem.value.length > 0; }), 
 // tslint:disable-next-line:no-any
-function (_, data) { return data; })).subscribe(function (result) {
+operators_1.switchMap(function (_) { return request$(elem.value); }, function (_, data) { return data; })).subscribe(function (result) {
     while (results.firstChild) {
         results.removeChild(results.firstChild);
     }
     for (var _i = 0, _a = result.items; _i < _a.length; _i++) {
         var item = _a[_i];
         var li = document.createElement('li');
-        li.appendChild(document.createTextNode(item.html_url));
+        li.innerHTML = "<a href=\"" + item.html_url + "\">" + item.html_url + "</a>";
         results.appendChild(li);
     }
 });
