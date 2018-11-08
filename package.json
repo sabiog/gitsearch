@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "npm run clean && npm run compile",
-    "clean": "rm -rf ./dist/index.bundle.js",
+    "clean": "rm -rf ./docs/index.bundle.js",
     "compile": "webpack --config ./webpack.config.js --progress",
     "test": "./node_modules/.bin/karma start ./lesson/GolovinKonstantin/karma.conf.js",
     "lint": "tslint 'lesson/**/*.ts'",

@@ -19,7 +19,7 @@ function request$(txt: string): Observable<any> {
 }
 
 keyPause$.pipe(
-    filter((_val: string) => elem.value.length > 0),
+    filter((_val: string) => typeof(elem.value) !== undefined && elem.value.length > 0),
     switchMap((_val: string) => request$(elem.value),
 // tslint:disable-next-line:no-any
     (_: any, data: any) => data)).subscribe((result: any) => {
