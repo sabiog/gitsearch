@@ -17,16 +17,15 @@ function request$(txt: string): Observable<any> {
 }
 
 keyPause$.pipe(
-    filter((_val: string) => typeof(elem.value) !== undefined && elem.value.length > 0),
-    switchMap((_val: string) => request$(elem.value),
-// tslint:disable-next-line:no-any
-    (_: any, data: any) => data)).subscribe((result: any) => {
+    filter((_: string) => typeof(elem.value) !== undefined && elem.value.length > 0),
+    // tslint:disable-next-line:no-any
+    switchMap((_: string) => request$(elem.value), (_: any, data: any) => data)).subscribe((result: any) => {
         while (results.firstChild ) {
             results.removeChild(results.firstChild);
         }
         for (const item of result.items) {
             const li: HTMLLIElement = document.createElement('li');
-            li.appendChild(document.createTextNode(item.html_url));
+            li.innerHTML = `<a href="${item.html_url}">${item.html_url}</a>`;
             results.appendChild(li);
         }
     });
