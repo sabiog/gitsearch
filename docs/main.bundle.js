@@ -103,7 +103,7 @@ function request$(txt) {
     return rxjs_1.from(fetch('https://api.github.com/search/repositories?q=' + txt + '&sort=stars&order=desc')
         .then(function (res) { return res.json(); }));
 }
-keyPause$.pipe(filter_1.filter(function (_val) { return elem.value.length > 0; }), operators_1.switchMap(function (_val) { return request$(elem.value); }, 
+keyPause$.pipe(filter_1.filter(function (_val) { return typeof (elem.value) !== undefined && elem.value.length > 0; }), operators_1.switchMap(function (_val) { return request$(elem.value); }, 
 // tslint:disable-next-line:no-any
 function (_, data) { return data; })).subscribe(function (result) {
     while (results.firstChild) {
