@@ -1,7 +1,7 @@
 {
   "name": "search",
   "version": "1.0.0",
-  "main": "./src/index.html",
+  "main": "./node_modules/.bin/webpack-dev-server",
   "scripts": {
     "test": "./node_modules/.bin/karma start ./lesson/GolovinKonstantin/karma.conf.js",
     "lint": "tslint 'lesson/**/*.ts'",
