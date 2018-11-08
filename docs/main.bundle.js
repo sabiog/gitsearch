@@ -94,13 +94,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var rxjs_1 = __webpack_require__(1);
 var operators_1 = __webpack_require__(101);
 var filter_1 = __webpack_require__(201);
-var search = document.getElementById('searchbox');
 var elem = document.getElementById('searchbox');
 var results = document.getElementById('results');
-var keyPause$ = rxjs_1.fromEvent(search, 'keyup').pipe(operators_1.debounceTime(1000), operators_1.map(function (event) { return event.key; }));
+var keyPause$ = rxjs_1.fromEvent(elem, 'input').pipe(operators_1.debounceTime(1000), operators_1.map(function (event) { return event.type; }));
 // tslint:disable-next-line:no-any
 function request$(txt) {
-    return rxjs_1.from(fetch('https://api.github.com/search/repositories?q=' + txt + '&sort=stars&order=desc')
+    return rxjs_1.from(fetch("https://api.github.com/search/repositories?q=" + txt + "&sort=stars&order=desc")
         .then(function (res) { return res.json(); }));
 }
 keyPause$.pipe(filter_1.filter(function (_val) { return typeof (elem.value) !== undefined && elem.value.length > 0; }), operators_1.switchMap(function (_val) { return request$(elem.value); }, 
